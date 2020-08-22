@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/subscriberFragment">
+    app:startDestination="@id/subscriberListFragment">
+
+    <fragment
+        android:id="@+id/subscriberListFragment"
+        android:name="br.com.douglasmotta.mysubscribers.ui.subiscriberlist.SubscriberListFragment"
+        android:label="subscriber_list_fragment"
+        tools:layout="@layout/subscriber_list_fragment" />
 
     <fragment
         android:id="@+id/subscriberFragment"
