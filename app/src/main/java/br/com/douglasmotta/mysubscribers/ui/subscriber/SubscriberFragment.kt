@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import br.com.douglasmotta.mysubscribers.R
 import br.com.douglasmotta.mysubscribers.data.db.AppDatabase
 import br.com.douglasmotta.mysubscribers.data.db.dao.SubscriberDAO
@@ -32,8 +33,16 @@ class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
         }
     }
 
+    private val args: SubscriberFragmentArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        args.subscriber?.let { subscriber ->
+            button_subscriber.text = getString(R.string.subscriber_button_update)
+            input_name.setText(subscriber.name)
+            input_email.setText(subscriber.email)
+        }
 
         observeEvents()
         setListeners()
@@ -47,6 +56,11 @@ class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
                     hideKeyboard()
                     requireView().requestFocus()
 
+                    findNavController().popBackStack()
+                }
+                is SubscriberViewModel.SubscriberState.Updated -> {
+                    clearFields()
+                    hideKeyboard()
                     findNavController().popBackStack()
                 }
             }
@@ -74,7 +88,7 @@ class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
             val name = input_name.text.toString()
             val email = input_email.text.toString()
 
-            viewModel.addSubscriber(name, email)
+            viewModel.addOrUpdateSubscriber(name, email, args.subscriber?.id ?: 0)
         }
     }
 }

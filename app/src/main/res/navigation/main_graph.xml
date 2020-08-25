@@ -9,11 +9,23 @@
         android:id="@+id/subscriberListFragment"
         android:name="br.com.douglasmotta.mysubscribers.ui.subiscriberlist.SubscriberListFragment"
         android:label="@string/subscriberList_title"
-        tools:layout="@layout/subscriber_list_fragment" />
+        tools:layout="@layout/subscriber_list_fragment">
+
+        <action
+            android:id="@+id/action_subscriberListFragment_to_subscriberFragment"
+            app:destination="@id/subscriberFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/subscriberFragment"
         android:name="br.com.douglasmotta.mysubscribers.ui.subscriber.SubscriberFragment"
         android:label="@string/subscriber_title"
-        tools:layout="@layout/subscriber_fragment" />
+        tools:layout="@layout/subscriber_fragment">
+
+        <argument
+            android:name="subscriber"
+            android:defaultValue="@null"
+            app:argType="br.com.douglasmotta.mysubscribers.data.db.entity.SubscriberEntity"
+            app:nullable="true" />
+    </fragment>
 </navigation>
