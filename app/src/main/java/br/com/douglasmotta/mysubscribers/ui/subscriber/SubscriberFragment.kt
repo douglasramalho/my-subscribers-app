@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import br.com.douglasmotta.mysubscribers.R
 import br.com.douglasmotta.mysubscribers.data.db.AppDatabase
 import br.com.douglasmotta.mysubscribers.data.db.dao.SubscriberDAO
@@ -45,6 +46,8 @@ class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
                     clearFields()
                     hideKeyboard()
                     requireView().requestFocus()
+
+                    findNavController().popBackStack()
                 }
             }
         }
