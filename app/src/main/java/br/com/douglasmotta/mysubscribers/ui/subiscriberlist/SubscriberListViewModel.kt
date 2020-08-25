@@ -1,5 +1,6 @@
 package br.com.douglasmotta.mysubscribers.ui.subiscriberlist
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +17,24 @@ class SubscriberListViewModel(
     val allSubscribersEvent: LiveData<List<SubscriberEntity>>
         get() = _allSubscribersEvent
 
+    private val _deleteAllSubscribersEvent = MutableLiveData<Unit>()
+    val deleteAllSubscribersEvent: LiveData<Unit>
+        get() = _deleteAllSubscribersEvent
+
     fun getSubscribers() = viewModelScope.launch {
         _allSubscribersEvent.postValue(repository.getAllSubscribers())
+    }
+
+    fun deleteAllSubscribers() = viewModelScope.launch {
+        try {
+            repository.deleteAllSubscribers()
+            _deleteAllSubscribersEvent.postValue(Unit)
+        } catch (ex: Exception) {
+            Log.e(TAG, ex.toString())
+        }
+    }
+
+    companion object {
+        private val TAG = SubscriberListViewModel::class.java.simpleName
     }
 }

@@ -1,6 +1,9 @@
 package br.com.douglasmotta.mysubscribers.ui.subiscriberlist
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,6 +38,8 @@ class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
 
     private fun observeViewModelEvents() {
         viewModel.allSubscribersEvent.observe(viewLifecycleOwner) { allSubscribers ->
+            setHasOptionsMenu(allSubscribers.size > 1)
+
             val subscriberListAdapter = SubscriberListAdapter(allSubscribers) { subscriber ->
                 val directions = SubscriberListFragmentDirections
                     .actionSubscriberListFragmentToSubscriberFragment(subscriber)
@@ -47,6 +52,10 @@ class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
                 adapter = subscriberListAdapter
             }
         }
+
+        viewModel.deleteAllSubscribersEvent.observe(viewLifecycleOwner) {
+            viewModel.getSubscribers()
+        }
     }
 
     override fun onResume() {
@@ -58,5 +67,16 @@ class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
         fabAddSubscriber.setOnClickListener {
             findNavController().navigateWithAnimations(R.id.action_subscriberListFragment_to_subscriberFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.subscriber_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.delete_subscribers) {
+            viewModel.deleteAllSubscribers()
+            true
+        } else super.onOptionsItemSelected(item)
     }
 }
