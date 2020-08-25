@@ -10,6 +10,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import br.com.douglasmotta.mysubscribers.R
 import br.com.douglasmotta.mysubscribers.data.db.AppDatabase
+import br.com.douglasmotta.mysubscribers.extension.navigateWithAnimations
 import br.com.douglasmotta.mysubscribers.repository.DatabaseDataSource
 import br.com.douglasmotta.mysubscribers.repository.SubscriberRepository
 import kotlinx.android.synthetic.main.subscriber_list_fragment.*
@@ -45,7 +46,7 @@ class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
 
     private fun configureViewListeners() {
         fabAddSubscriber.setOnClickListener {
-            findNavController().navigate(R.id.subscriberFragment)
+            findNavController().navigateWithAnimations(R.id.subscriberFragment)
         }
     }
 }
