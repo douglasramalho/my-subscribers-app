@@ -55,4 +55,18 @@
         app:layout_constraintStart_toStartOf="@id/input_layout_email"
         app:layout_constraintTop_toBottomOf="@id/input_layout_email" />
 
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="@string/subscriber_button_delete"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/input_layout_email"
+        app:layout_constraintStart_toStartOf="@id/input_layout_email"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

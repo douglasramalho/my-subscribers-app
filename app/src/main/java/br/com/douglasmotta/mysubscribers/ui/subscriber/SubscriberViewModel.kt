@@ -34,7 +34,7 @@ class SubscriberViewModel(private val repository: SubscriberRepository) : ViewMo
             _subscriberStateEventData.value = SubscriberState.Updated
             _messageEventData.value = R.string.subscriber_updated_successfully
         } catch (ex: Exception) {
-            _messageEventData.value = R.string.subscriber_error_to_insert
+            _messageEventData.value = R.string.subscriber_error_to_update
             Log.e(TAG, ex.toString())
         }
     }
@@ -52,9 +52,24 @@ class SubscriberViewModel(private val repository: SubscriberRepository) : ViewMo
         }
     }
 
+    fun removeSubscriber(id: Long) = viewModelScope.launch {
+        try {
+            if (id > 0) {
+                repository.deleteSubscriber(id)
+                _subscriberStateEventData.value = SubscriberState.Deleted
+                _messageEventData.value = R.string.subscriber_deleted_successfully
+            }
+        } catch (ex: Exception) {
+            _messageEventData.value = R.string.subscriber_error_to_delete
+            Log.e(TAG, ex.toString())
+        }
+
+    }
+
     sealed class SubscriberState {
         object Inserted : SubscriberState()
         object Updated : SubscriberState()
+        object Deleted : SubscriberState()
     }
 
     companion object {
