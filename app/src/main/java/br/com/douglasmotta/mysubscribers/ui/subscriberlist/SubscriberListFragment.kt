@@ -1,4 +1,4 @@
-package br.com.douglasmotta.mysubscribers.ui.subiscriberlist
+package br.com.douglasmotta.mysubscribers.ui.subscriberlist
 
 import android.os.Bundle
 import android.view.View
