@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import br.com.douglasmotta.mysubscribers.R
 import br.com.douglasmotta.mysubscribers.data.db.entity.SubscriberEntity
+import br.com.douglasmotta.mysubscribers.ui.subiscriberlist.SubscriberListAdapter
 import kotlinx.android.synthetic.main.subscriber_list_fragment.*
 
 class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
