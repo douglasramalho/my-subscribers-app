@@ -1,4 +1,4 @@
-package br.com.douglasmotta.mysubscribers.ui.subiscriberlist
+package br.com.douglasmotta.mysubscribers.ui.subscriberlist
 
 import androidx.lifecycle.ViewModel
 import br.com.douglasmotta.mysubscribers.repository.SubscriberRepository
