@@ -1,4 +1,4 @@
-package br.com.douglasmotta.mysubscribers.ui.subiscriberlist
+package br.com.douglasmotta.mysubscribers.ui.subscriberlist
 
 import android.os.Bundle
 import android.view.View
@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import br.com.douglasmotta.mysubscribers.R
+import br.com.douglasmotta.mysubscribers.ui.subiscriberlist.SubscriberListAdapter
 import br.com.douglasmotta.mysubscribers.data.db.AppDatabase
 import br.com.douglasmotta.mysubscribers.repository.DatabaseDataSource
 import br.com.douglasmotta.mysubscribers.repository.SubscriberRepository
