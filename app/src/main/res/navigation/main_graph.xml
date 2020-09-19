@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/subscriberListFragment"
-        android:name="br.com.douglasmotta.mysubscribers.ui.subiscriberlist.SubscriberListFragment"
+        android:name="br.com.douglasmotta.mysubscribers.ui.subscriberlist.SubscriberListFragment"
         android:label="@string/subscriberList_title"
         tools:layout="@layout/subscriber_list_fragment" />
 
