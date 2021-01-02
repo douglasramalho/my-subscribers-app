@@ -10,15 +10,16 @@ import br.com.douglasmotta.mysubscribers.data.db.entity.SubscriberEntity
 import kotlinx.android.synthetic.main.subscriber_item.view.*
 
 class SubscriberListAdapter(
-    private val subscribers: List<SubscriberEntity>,
-    private val onSubscriberClickListener: (subscriber: SubscriberEntity) -> Unit
+    private val subscribers: List<SubscriberEntity>
 ) : RecyclerView.Adapter<SubscriberListAdapter.SubscriberListViewHolder>() {
+
+    var onItemClick: ((subscriber: SubscriberEntity) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubscriberListViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.subscriber_item, parent, false)
 
-        return SubscriberListViewHolder(view, onSubscriberClickListener)
+        return SubscriberListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: SubscriberListViewHolder, position: Int) {
@@ -27,10 +28,7 @@ class SubscriberListAdapter(
 
     override fun getItemCount(): Int = subscribers.size
 
-    class SubscriberListViewHolder(
-        itemView: View,
-        private val onSubscriberClickListener: (subscriber: SubscriberEntity) -> Unit
-    ) : RecyclerView.ViewHolder(itemView) {
+    inner class SubscriberListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewSubscriberName: TextView = itemView.text_subscriber_name
         private val textViewSubscriberEmail: TextView = itemView.text_subscriber_email
 
@@ -39,7 +37,7 @@ class SubscriberListAdapter(
             textViewSubscriberEmail.text = subscriber.email
 
             itemView.setOnClickListener {
-                onSubscriberClickListener.invoke(subscriber)
+                onItemClick?.invoke(subscriber)
             }
         }
     }
